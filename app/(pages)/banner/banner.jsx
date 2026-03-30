@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import heroimg from "../../../public/images/hero_model_img.png"
+import heroimg1 from "../../../public/images/hero_product_img1.png"
+import heroimg2 from "../../../public/images/hero_product_img2.png"
 
 const Banner = () => {
   const categories = [
@@ -37,7 +40,7 @@ const Banner = () => {
         {/* الصورة الرئيسية */}
         <div className="relative w-full h-full flex justify-end items-end">
           <Image 
-            src="/images/hero_model_img.png" // تأكد من اسم الصورة عندك
+            src={heroimg} // تأكد من اسم الصورة عندك
             alt="Hero Gadget"
             width={400}
             height={500}
@@ -59,7 +62,7 @@ const Banner = () => {
             </Link>
           </div>
           <Image 
-            src="/images/hero_product_img1.png" // تأكد من اسم الصورة
+            src={heroimg1} // تأكد من اسم الصورة
             alt="Airpods"
             width={200}
             height={200}
@@ -76,7 +79,7 @@ const Banner = () => {
             </Link>
           </div>
           <Image 
-            src="/images/hero_product_img2.png" // تأكد من اسم الصورة
+            src={heroimg2} // تأكد من اسم الصورة
             alt="Smart Watch"
             width={150}
             height={150}

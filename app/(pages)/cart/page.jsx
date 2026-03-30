@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Minus, Plus, ChevronRight, ArrowLeft } from 'lucide-react'
 // استيراد الأكشنز من ملف الـ Slice الخاص بك
 import { addtocart, decreaseQuantity, deletefromcart } from '../../slice/cartslice' 
+import Link from 'next/link'
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -158,9 +159,12 @@ const CartPage = () => {
                         </div>
 
                         {/* زر تنفيذ الطلب */}
-                        <button className="w-full bg-[#f16e00] text-white py-5 font-bold rounded-sm mt-6 hover:bg-[#d46100] transition-all uppercase tracking-[2px] text-sm">
+                        <Link href="/payment">
+                         <button className="w-full bg-[#f16e00] text-white py-5 font-bold rounded-sm mt-6 hover:bg-[#d46100] transition-all uppercase tracking-[2px] text-sm">
                             Place Order
                         </button>
+                        </Link>
+                       
                     </div>
                 </div>
 

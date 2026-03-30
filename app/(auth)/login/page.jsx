@@ -27,23 +27,14 @@ const LoginPage = () => {
     }
   });
 
-  // 3. دالة الإرسال
-  const onSubmit = async (data) => {
-      try {
-    // استدعاء الـ Server Action
-    const result = await loginAction(data);
-    
-    if (result.success) {
-      // بعد ما السيرفر يحط الكوكي، بنحول المستخدم للـ home
-      router.push('/');
-      router.refresh(); // مهم جداً عشان الـ Middleware يتأكد من الحالة الجديدة
-    }
+ const onSubmit = async (data) => {
+  try {
+    // تأكد أنك تنادي loginAction وليس logoutAction
+    await loginAction(data); 
   } catch (error) {
-    console.error("Login failed", error);
+    console.error(error);
   }
-    // محاكاة الاتصال بالسيرفر
-  
-  };
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">

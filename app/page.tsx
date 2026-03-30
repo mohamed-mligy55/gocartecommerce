@@ -5,6 +5,9 @@ import { Send, RotateCcw, Headphones } from 'lucide-react';
 import Link from "next/link";
 import boylaptop from "../public/images/boy_with_laptop_image.19edbd3e.png"
 import girlphone from "../public/images/girl_with_earphone_image.604badd7.png"
+import soundbox from "../public/images/jbl_soundbox_image.c02bcfd7.png"
+import controll from "../public/images/md_controller_image.036005e4 (1).png"
+import headphone from "../public/images/girl_with_headphone_image.8cdb8255.png"
 export default function Home() {
   const specs = [
     {
@@ -69,7 +72,7 @@ export default function Home() {
         {/* السماعات - جهة اليسار */}
         <div className="absolute left-[-20px] md:left-10 top-1/2 -translate-y-1/2 w-48 md:w-72 h-auto hidden sm:block">
           <Image 
-            src="/images/jbl_soundbox_image.c02bcfd7.png" // استبدل بمسار صورتك
+            src={soundbox} // استبدل بمسار صورتك
             alt="JBL Speakers"
             className="object-contain drop-shadow-xl rotate-[-10deg]"
             width={250 }
@@ -97,7 +100,7 @@ export default function Home() {
         {/* الكنترولر - جهة اليمين */}
         <div className="absolute right-[-40px] md:right-5 bottom-[-20px] md:bottom-10 w-56 md:w-80 h-auto hidden sm:block">
           <Image 
-            src="/images/md_controller_image.036005e4 (1).png" // استبدل بمسار صورتك
+            src={controll} // استبدل بمسار صورتك
             alt="Xbox Controller"
             className="object-contain drop-shadow-2xl rotate-[-20deg]"
             width={250}
@@ -105,11 +108,7 @@ export default function Home() {
           />
         </div>
 
-        {/* كنترولر إضافي علوي (اختياري كما في الصورة) */}
-        <div className="absolute right-0 top-0 w-32 opacity-80 hidden lg:block">
-            <img src="/controller-top.png" alt="" className="rotate-[-20deg]" />
-        </div>
-
+     
       </div>
     </section>
 
@@ -126,7 +125,7 @@ export default function Home() {
 
         {/* Card 1 */}
         <div className="relative h-[400px] rounded-md overflow-hidden group">
-          <Image src="/images/girl_with_headphone_image.8cdb8255.png" alt="" fill   className="object-cover " />
+          <Image src={headphone} alt="" fill   className="object-cover " />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6 text-white text-left">
             <h3 className="text-xl font-semibold mb-2">
               Unparalleled Sound
