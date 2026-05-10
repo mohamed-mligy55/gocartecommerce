@@ -1,20 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Link from "next/link"; // للانتقال لصفحة التسجيل
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import { useRouter, useSearchParams } from 'next/navigation'; // أضفنا useSearchParams
 import { loginAction } from '@/auth';
-// 1. مخطط التحقق (Login Schema)
+
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(1, "Password is required"),
 });
 
-const LoginPage = () => {
-  // 2. إعداد الفورم
+// فصلنا محتوى الفورم في مكون داخلي لاستخدام useSearchParams بأمان داخل Suspense
+const  LoginPage = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  // جلب الـ callbackUrl من الرابط، وإذا لم يوجد نتوجه للرئيسية '/'
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
+
   const {
     register,
     handleSubmit,
@@ -27,14 +33,22 @@ const LoginPage = () => {
     }
   });
 
- const onSubmit = async (data) => {
-  try {
-    // تأكد أنك تنادي loginAction وليس logoutAction
-    await loginAction(data); 
-  } catch (error) {
-    console.error(error);
-  }
-};
+  const onSubmit = async (data) => {
+    try {
+      const res = await loginAction(data); 
+
+      // نفترض أن loginAction تعيد نجاح العملية
+      if (res?.success || !res?.error) {
+        // التوجه للرابط المحفوظ (مثلاً /cart) ثم تحديث الصفحة
+        router.push(callbackUrl);
+        router.refresh(); 
+      } else {
+        alert(res?.error || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">

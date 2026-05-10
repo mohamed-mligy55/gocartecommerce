@@ -1,13 +1,13 @@
 "use client"
 import React from 'react';
 import Link from 'next/link';
-import { Search, ShoppingCart, X } from 'lucide-react';
+import { Search, ShoppingCart,X  } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import {logoutAction} from "@/auth"
 import { useTransition } from 'react';
 
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = () => {
   const cart = useSelector(state => state.cart.items);
   const [isPending, startTransition] = useTransition();
   const handleLogout = () => {
@@ -87,7 +87,7 @@ const Navbar = ({ isLoggedIn }) => {
 
             {/* Auth Buttons */}
             <div className="flex gap-4">
-              {!isLoggedIn ? (
+           
                 <>
                   <Link href="/login">
                     <button className="cursor-pointer bg-[#5c67ff] text-white px-8 py-2.5 rounded-2xl font-medium hover:bg-[#4a54e1]">
@@ -101,15 +101,8 @@ const Navbar = ({ isLoggedIn }) => {
                     </button>
                   </Link>
                 </>
-              ) : (
-                <button 
-      onClick={handleLogout}
-      disabled={isPending}
-      className="cursor-pointer bg-red-500 text-white px-8 py-2.5 rounded-2xl font-medium hover:bg-red-600 disabled:bg-gray-400"
-    >
-      {isPending ? "Logging out..." : "Logout"}
-    </button>
-              )}
+            
+              
             </div>
 
           </div>

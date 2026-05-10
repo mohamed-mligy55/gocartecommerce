@@ -39,14 +39,14 @@ const Banner = () => {
 
         {/* الصورة الرئيسية */}
         <div className="relative w-full h-full flex justify-end items-end">
-          <Image 
-            src={heroimg} // تأكد من اسم الصورة عندك
-            alt="Hero Gadget"
-            width={400}
-            height={500}
-            className="object-contain"
-            priority
-          />
+         <Image 
+  src={heroimg} 
+  alt="Heroimg"
+  width={500} // الأبعاد الأصلية
+  height={500} 
+  className="w-full h-auto" // أضف h-auto هنا
+  loading="eager"
+/>
         </div>
       </div>
 
@@ -66,7 +66,8 @@ const Banner = () => {
             alt="Airpods"
             width={200}
             height={200}
-            className="object-contain"
+      
+    className="object-contain"
           />
         </div>
 
@@ -83,7 +84,8 @@ const Banner = () => {
             alt="Smart Watch"
             width={150}
             height={150}
-            className="object-contain"
+            
+    className="object-contain"
           />
         </div>
 
