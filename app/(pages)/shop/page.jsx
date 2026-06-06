@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ReactPaginate from "react-paginate";
+import { Search } from "lucide-react";
 import ProductCard from "../ProductCard";
 
 // دالة جلب البيانات
@@ -21,11 +22,18 @@ const fetchProducts = async (page, search, category) => {
 
 export default function ProductsPage() {
   const [page, setPage] = useState(0);
-  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");   // ما يكتبه المستخدم في الحقل
+  const [search, setSearch] = useState(""); // المصطلح المُطبّق فعلياً على البحث
   const [category, setCategory] = useState("all");
 
+  // البحث يحدث فقط عند الضغط على زر Search — لا بحث تلقائي ولا عند Enter
+  const runSearch = () => {
+    setSearch(query);
+    setPage(0);
+  };
+
   // استخدام React Query
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["products", page, search, category],
     queryFn: () => fetchProducts(page, search, category),
     keepPreviousData: true, // يحافظ على البيانات القديمة أثناء تحميل الجديدة لمنع الـ flickering
@@ -40,16 +48,27 @@ export default function ProductsPage() {
       
       {/* الفلترة والبحث */}
       <div className="flex flex-col md:flex-row gap-4 mb-8">
-        <input
-          type="text"
-          placeholder="Search for products..."
-          className="flex-1 p-3 rounded-xl border border-gray-200 shadow-sm outline-none focus:border-black transition-all"
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(0);
-          }}
-        />
+        <div className="flex-1 flex gap-2">
+          <input
+            type="text"
+            value={query}
+            placeholder="Search for products..."
+            aria-label="Search for products"
+            className="flex-1 p-3 rounded-xl border border-gray-200 shadow-sm outline-none focus:border-black transition-all"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={runSearch}
+            aria-label="Search"
+            className="flex items-center gap-2 px-5 rounded-xl bg-black text-white font-medium hover:bg-gray-800 transition-all cursor-pointer"
+          >
+            <Search size={18} />
+            <span className="hidden sm:inline">Search</span>
+          </button>
+        </div>
         <select
+          aria-label="Filter by category"
           className="p-3 rounded-xl border border-gray-200 shadow-sm bg-white outline-none cursor-pointer"
           onChange={(e) => {
             setCategory(e.target.value);

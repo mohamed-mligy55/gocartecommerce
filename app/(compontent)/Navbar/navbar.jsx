@@ -3,18 +3,10 @@ import React from 'react';
 import Link from 'next/link';
 import { Search, ShoppingCart,X  } from 'lucide-react';
 import { useSelector } from 'react-redux';
-import {logoutAction} from "@/auth"
-import { useTransition } from 'react';
 
 
 const Navbar = () => {
   const cart = useSelector(state => state.cart.items);
-  const [isPending, startTransition] = useTransition();
-  const handleLogout = () => {
-    startTransition(async () => {
-      await logoutAction();
-    });
-  };
 
   return (
     <header className="w-full font-sans">
@@ -30,7 +22,7 @@ const Navbar = () => {
           <button className="bg-white text-black px-6 py-1.5 rounded-full text-sm font-semibold hover:bg-opacity-90">
             Claim Offer
           </button>
-          <button className="hover:opacity-80">
+          <button type="button" aria-label="Close announcement" className="hover:opacity-80">
             <X size={18} />
           </button>
         </div>
@@ -67,6 +59,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search products"
+              aria-label="Search products"
               className="w-full bg-[#f3f4f7] rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
             />
           </div>
@@ -86,24 +79,21 @@ const Navbar = () => {
             </Link>
 
             {/* Auth Buttons */}
-            <div className="flex gap-4">
-           
-                <>
-                  <Link href="/login">
-                    <button className="cursor-pointer bg-[#5c67ff] text-white px-8 py-2.5 rounded-2xl font-medium hover:bg-[#4a54e1]">
-                      Login
-                    </button>
-                  </Link>
+         <div className="hidden md:flex gap-4">
+  <>
+    <Link href="/login">
+      <button className="cursor-pointer bg-[#5c67ff] text-white px-8 py-2.5 rounded-2xl font-medium hover:bg-[#4a54e1]">
+        Login
+      </button>
+    </Link>
 
-                  <Link href="/signup">
-                    <button className="border-2 border-[#5c67ff] text-[#5c67ff] px-8 py-2.5 rounded-2xl font-medium hover:bg-[#5c67ff] hover:text-white">
-                      Signup
-                    </button>
-                  </Link>
-                </>
-            
-              
-            </div>
+    <Link href="/signup">
+      <button className="border-2 border-[#5c67ff] text-[#5c67ff] px-8 py-2.5 rounded-2xl font-medium hover:bg-[#5c67ff] hover:text-white">
+        Signup
+      </button>
+    </Link>
+  </>
+</div>
 
           </div>
         </div>

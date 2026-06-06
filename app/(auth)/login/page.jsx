@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -62,11 +62,12 @@ const  LoginPage = () => {
           
           {/* Email Field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
               Email Address
             </label>
             <input
               {...register("email")}
+              id="email"
               type="email"
               placeholder="name@company.com"
               className={`w-full px-4 py-3 rounded-xl border outline-none transition-all ${
@@ -83,11 +84,12 @@ const  LoginPage = () => {
           {/* Password Field */}
           <div>
             <div className="flex justify-between mb-2">
-              <label className="text-sm font-medium text-gray-700">Password</label>
+              <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
               <a href="#" className="text-xs text-blue-600 hover:underline">Forgot password?</a>
             </div>
             <input
               {...register("password")}
+              id="password"
               type="password"
               placeholder="••••••••"
               className={`w-full px-4 py-3 rounded-xl border outline-none transition-all ${
@@ -111,7 +113,7 @@ const  LoginPage = () => {
           </button>
 
           <p className="text-center text-sm text-gray-600 mt-8">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-blue-600 font-semibold hover:underline">
               Sign up
             </Link>

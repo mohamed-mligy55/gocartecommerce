@@ -41,8 +41,8 @@ export default function ProductCard({ product }) {
     <div className="bg-white rounded-[25px] p-4 relative flex flex-col group hover:shadow-lg transition-shadow duration-300 border border-transparent hover:border-gray-100">
       
       {/* أيقونة المفضلة */}
-      <button className="absolute top-6 right-6 z-10 bg-white/80 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center shadow-sm text-gray-400 hover:text-red-500 transition-colors">
-        ♡
+      <button type="button" aria-label={`Add ${product.title} to favorites`} className="absolute top-6 right-6 z-10 bg-white/80 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center shadow-sm text-gray-400 hover:text-red-500 transition-colors">
+        <span aria-hidden="true">♡</span>
       </button>
 
       {/* حاوية الصورة */}
@@ -69,14 +69,14 @@ export default function ProductCard({ product }) {
         </p>
 
         {/* التقييم */}
-        <div className="flex items-center mb-4">
-          <div className="flex text-green-600 text-xs">
+        <div className="flex items-center mb-4" aria-label={`Rated ${product.rating} out of 5`}>
+          <div className="flex text-green-600 text-xs" aria-hidden="true">
             {"★".repeat(Math.floor(product.rating || 0))}
             <span className="text-gray-300">
               {"★".repeat(5 - Math.floor(product.rating || 0))}
             </span>
           </div>
-          <span className="text-gray-400 text-[10px] ml-1">{product.rating}</span>
+          <span className="text-gray-400 text-[10px] ml-1" aria-hidden="true">{product.rating}</span>
         </div>
       </div>
 

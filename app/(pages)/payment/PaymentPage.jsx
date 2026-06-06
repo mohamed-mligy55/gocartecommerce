@@ -1,7 +1,8 @@
 "use client"
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { 
+import { useSelector } from 'react-redux'
+import Image from 'next/image'
+import {
     CardNumberElement, 
     CardExpiryElement, 
     CardCvcElement, 
@@ -10,7 +11,6 @@ import {
 } from '@stripe/react-stripe-js'
 
 const PaymentPage = () => {
-    const dispatch = useDispatch();
     const stripe = useStripe();
     const elements = useElements();
     
@@ -112,9 +112,10 @@ const PaymentPage = () => {
                         <div className="space-y-5">
                             {/* Email */}
                             <div>
-                                <label className="block text-[13px] font-bold text-[#1a1a1a] mb-2">Email</label>
-                                <input 
-                                    type="email" 
+                                <label htmlFor="pay-email" className="block text-[13px] font-bold text-[#1a1a1a] mb-2">Email</label>
+                                <input
+                                    id="pay-email"
+                                    type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="email@example.com"
@@ -130,8 +131,8 @@ const PaymentPage = () => {
                                     <div className="p-3 border-b border-gray-200 relative">
                                         <CardNumberElement options={elementOptions} />
                                         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1">
-                                            <img src="https://js.stripe.com/v3/fingerprinted/img/visa-729c05c2265c36394be55913253b2111.svg" alt="visa" className="h-4" />
-                                            <img src="https://js.stripe.com/v3/fingerprinted/img/mastercard-6d9b047535496417f7c413b063d33299.svg" alt="master" className="h-4" />
+                                            <Image src="https://js.stripe.com/v3/fingerprinted/img/visa-729c05c2265c36394be55913253b2111.svg" alt="visa" width={26} height={16} className="h-4 w-auto" />
+                                            <Image src="https://js.stripe.com/v3/fingerprinted/img/mastercard-6d9b047535496417f7c413b063d33299.svg" alt="master" width={26} height={16} className="h-4 w-auto" />
                                         </div>
                                     </div>
                                     <div className="flex">
@@ -148,9 +149,10 @@ const PaymentPage = () => {
 
                             {/* Cardholder Name */}
                             <div>
-                                <label className="block text-[13px] font-bold text-[#1a1a1a] mb-2">Cardholder name</label>
-                                <input 
-                                    type="text" 
+                                <label htmlFor="pay-cardname" className="block text-[13px] font-bold text-[#1a1a1a] mb-2">Cardholder name</label>
+                                <input
+                                    id="pay-cardname"
+                                    type="text"
                                     value={cardName}
                                     onChange={(e) => setCardName(e.target.value)}
                                     placeholder="Full name on card"
@@ -160,9 +162,9 @@ const PaymentPage = () => {
 
                             {/* Country Selector */}
                             <div>
-                                <label className="block text-[13px] font-bold text-[#1a1a1a] mb-2">Country or region</label>
+                                <label htmlFor="pay-country" className="block text-[13px] font-bold text-[#1a1a1a] mb-2">Country or region</label>
                                 <div className="relative">
-                                    <select className="w-full border border-gray-200 rounded-[4px] p-2.5 text-[15px] bg-white outline-none appearance-none focus:ring-1 focus:ring-blue-500 transition-all cursor-pointer">
+                                    <select id="pay-country" aria-label="Country or region" className="w-full border border-gray-200 rounded-[4px] p-2.5 text-[15px] bg-white outline-none appearance-none focus:ring-1 focus:ring-blue-500 transition-all cursor-pointer">
                                         <option>India</option>
                                         <option>United States</option>
                                         <option>Egypt</option>

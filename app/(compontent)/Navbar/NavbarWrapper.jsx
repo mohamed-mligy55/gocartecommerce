@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import Navbar from "./navbar";
 
 export default async function NavbarWrapper() {

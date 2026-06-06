@@ -1,7 +1,11 @@
 import ProductCard from './ProductCard';
 
 async function getProducts() {
-  const res = await fetch('https://dummyjson.com/products/category/mobile-accessories');
+  // تخزين مؤقت لمدة ساعة (ISR) — الصفحة تُبنى static وتتجدّد كل 3600 ثانية
+  const res = await fetch(
+    'https://dummyjson.com/products/category/mobile-accessories',
+    { next: { revalidate: 3600 } }
+  );
   if (!res.ok) throw new Error('فشل جلب البيانات');
   const data = await res.json();
   return data.products;

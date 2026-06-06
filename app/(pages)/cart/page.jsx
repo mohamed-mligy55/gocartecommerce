@@ -5,6 +5,7 @@ import { Minus, Plus, ChevronRight, ArrowLeft } from 'lucide-react'
 // استيراد الأكشنز من ملف الـ Slice الخاص بك
 import { addtocart, decreaseQuantity, deletefromcart } from '../../slice/cartslice' 
 import Link from 'next/link'
+import Image from 'next/image'
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -55,8 +56,8 @@ const CartPage = () => {
                                 
                                 {/* تفاصيل المنتج */}
                                 <div className="col-span-6 flex items-center gap-6">
-                                    <div className="w-24 h-24 bg-[#f8f8f8] border border-gray-100 rounded flex items-center justify-center p-2">
-                                        <img src={item.thumbnail} alt={item.title} className="max-h-full object-contain" />
+                                    <div className="relative w-24 h-24 bg-[#f8f8f8] border border-gray-100 rounded flex items-center justify-center p-2">
+                                        <Image src={item.thumbnail} alt={item.title} fill sizes="96px" className="object-contain p-2" />
                                     </div>
                                     <div className="flex flex-col gap-1">
                                         <p className="text-[15px] font-bold text-gray-800 leading-tight">

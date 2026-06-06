@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 // دالة تسجيل الدخول
-export async function loginAction(data) {
+export async function loginAction() {
   const cookieStore = await cookies();
   
   // تعيين الكوكي عند تسجيل الدخول الناجح

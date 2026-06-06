@@ -31,10 +31,12 @@ const AboutPage = () => {
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <div className="relative">
             <div className="aspect-[4/5] relative rounded-[40px] overflow-hidden shadow-2xl z-10">
-              <img 
-                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070" 
+              <Image
+                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070"
                 alt="Store Interior"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
             {/* المربع الأسود الطاير */}
@@ -100,7 +102,7 @@ const AboutPage = () => {
               </div>
               <h3 className="text-2xl font-bold pt-2">Curated Quality</h3>
               <p className="text-gray-500 text-sm leading-relaxed">
-                We don't sell everything. We only sell the best versions of what you actually need.
+                We don&apos;t sell everything. We only sell the best versions of what you actually need.
               </p>
             </div>
           </div>
